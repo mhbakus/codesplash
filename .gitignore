@@ -102,3 +102,4 @@ ENV/
 
 #my code
 __init__.py
+testing.py
