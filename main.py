@@ -1,5 +1,6 @@
 if __name__ == "__main__":
 	#print a message for select a action create workspace or login
+	
 	exit = False
 	while not exit:
 	    answer = input('''
@@ -14,11 +15,16 @@ if __name__ == "__main__":
 
 	      2 .  create a workspace
 
-	      3 .  exit 
+	      3 .  exit
+
 	      ''')
+
 	    if answer.lower() == '1':
 	        #call the code for login
+	        pass
 	    elif answer.lower() == '2':
+	    	pass
 	        #call the code for creating a workspace
+
 	    else:
 	        exit = False
