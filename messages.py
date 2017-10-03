@@ -57,7 +57,7 @@ class Email:
 			body = content
 			msg.attach(MIMEText(body, 'plain'))
 			text = msg.as_string()
-			self.__server.sendmail(fromadress, email, text)
+			self.__server.sendmail(fromadress, to_add, text)
 
 		else:
 			return "you should be connected"
