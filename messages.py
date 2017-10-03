@@ -63,4 +63,5 @@ class Email:
 			return "you should be connected"
 
 
-
+# Mymail = Email('smtp.gmail.com', 587)
+# Mymail.connect('', '')
