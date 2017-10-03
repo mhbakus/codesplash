@@ -14,6 +14,13 @@ def connections():
 
 	'''
 	mail_client.send('mail@codesplashslack.com', reponse, subject, content)
+	please
+	verify_code = input("Please enter your security code ")
+	if verify_code == 123456:
+		domain = ("Please enter the subdomain of your workspace")
+	else:
+		print("Error your code is not correct")
+
 
 if __name__ == "__main__":
 	#print a message for select a action create workspace or login
@@ -38,7 +45,7 @@ if __name__ == "__main__":
 
 	    if answer.lower() == '1':
 	        #call the code for login
-	        pass
+	        connections()
 	    elif answer.lower() == '2':
 	    	pass
 	        #call the code for creating a workspace
