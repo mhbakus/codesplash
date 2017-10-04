@@ -59,7 +59,12 @@ def connections():
 	password = getpass.getpass('Password: ')
 
 	if userlist.check_user(email, password) == "correct":
-		print("great you're connected")
+		print('''
+			Welcome to your board
+			
+			1 chanels
+			2 messages
+			3 setting ''')
 	else:
 		print("email or password incorect")
 
