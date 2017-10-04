@@ -1,25 +1,67 @@
 from messages import *
-import user
+from user import *
+from workspace import *
+import getpass
 
 mail_client = Email('smtp.gmail.com', 587)
-mail_client.connect('mhbakus@gmail.com', 'mh41170788')
+mail_client.connect('elkana@meltwater.org', 'elykips+254')
+
+userlist = UserGroup()
+userlist.load_users('user.csv')
+
+def singup():
+	verification = Verification()
+	work_admin = WorkSpaceAdmin()
+	workspace = WorkSpace()
+
+	email = input("Enter Email: ")
+	verification.generate_random_numbers()
+	verification.send_notification(email)
+
+	confirmation_token = input("Enter Code: ")
+	result = verification.verify_code(confirmation_token)
+
+	if result == True:
+		print("Good Guy, Let's setup your workspace")
+
+		admin_full_name = input("Enter Full Name: ")
+		admin_name = input("Enter Display Name: ")
+		admin_pswrd = getpass.getpass('Password:')
+		
+		work_admin.create_admin_dict(admin_full_name, admin_name, admin_pswrd, email)
+
+		userlist.add_user(User(admin_full_name, admin_name, email, admin_pswrd))
+		userlist.save_user()
+
+		purpose = input(" 1 for school\n 2 for work\n 3 for shared interest group\n 4 for others\n Answer:  ")
+		
+		if purpose == '1':
+			purpose = "school"
+		elif purpose == '2':
+			purpose = 'work'
+		elif purpose == '3':
+			purpose = 'shared interest'
+		elif purpose == '4':
+			purpose = 'others'
+
+
+		size_of_team = input(" Enter Size of team: ")
+		name_of_coy = input(" Company Name: ")
+		workspace.create_work_space(name_of_coy, purpose, size_of_team, email)
+
+		print(workspace.get_workspaces())
+	else:
+		print("gerarahia mehn")
 
 def connections():
-	reponse = input("Please enter your email address : ")
-	subject = "welcome on slack"
-	content = '''
-	welcome on Slack
-	your security code is 123-456
-	enter this code in the application to verify your email
+	pass
+	email = input("Please enter your email address : ")
+	password = getpass.getpass('Password: ')
 
-	'''
-	mail_client.send('mail@codesplashslack.com', reponse, subject, content)
-	please
-	verify_code = input("Please enter your security code ")
-	if verify_code == 123456:
-		domain = ("Please enter the subdomain of your workspace")
+	if userlist.check_user(email, password):
+		print("great you're connected")
 	else:
-		print("Error your code is not correct")
+		print("email or password incorect")
 
 
 if __name__ == "__main__":
@@ -47,6 +89,7 @@ if __name__ == "__main__":
 	        #call the code for login
 	        connections()
 	    elif answer.lower() == '2':
+	    	singup()
 	    	pass
 	        #call the code for creating a workspace
 	    else:

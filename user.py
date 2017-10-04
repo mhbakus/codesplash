@@ -8,6 +8,17 @@ class User:
 		self.__workspace = list()
 
 
+	def get_email(self):
+		return self.__email
+
+
+	def get__password(self):
+		return self.__password
+
+	def user_str(self):
+		return "{},{},{},{}".format(self.__name, self.__username, self.__email, self.__password)
+
+
 	def __repr__(self):
 		return '''
 		name : {}
@@ -47,15 +58,22 @@ class User:
 
 
 class UserGroup:
-	def __init__(self, name, userlist = []):
-		self.__name = name
+	def __init__(self, userlist = []):
 		self.__users = userlist
+
+
+	def load_users(self, userfile):
+		with open(userfile) as file:
+			for line in file.readlines():
+				if line.strip():
+					name, username, email, password = line.split(',')
+					self.add_user(User(name, username, email, password))
 
 
 	def add_user(self, user):
 		if isinstance(user, User):
 			self.__users.append(user)
-			return "user added successfully to {}".format(self.__name)
+			return "user added successfully "
 		else:
 			return "{} is not a user".format(user)
 
@@ -63,6 +81,19 @@ class UserGroup:
 	def get_all_user(self):
 		for user in self.__users:
 			print(user)
+
+
+	def save_user(self):
+		with open('user.csv', 'w+') as file:
+			for user in self.__users:
+				file.write(str(user.user_str()) + "\r")
+
+	def check_user(self, email, password):
+		pwdhach = hashlib.sha256(password.encode('utf-8')).hexdigest()
+		for user in self.__users:
+			if user.get_email == email and user.get__password == pwdhach:
+				return True
+		return False
 
 # momo = User("momo", "moh", "momo@mail.fr", "123456")
 

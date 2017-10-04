@@ -34,19 +34,21 @@ class Message:
 				print(message)
 
 
+#class email to send all the mail
 class Email:
 	def __init__(self, client, port):
 		self.__client = client
 		self.__port = port
 		self.__conected = False
 
-
+	#connection to the server
 	def connect(self, login, passwd):
 		self.__server = smtplib.SMTP(self.__client, self.__port)
 		self.__server.starttls()
 		self.__server.login(login, passwd)
 		self.__conected = True
 
+	#sending an email
 	def send(self, from_add, to_add, msg_subject, content):
 		if self.__conected:
 			fromadress = from_add
