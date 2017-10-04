@@ -12,7 +12,7 @@ class User:
 		return self.__email
 
 
-	def get__password(self):
+	def get_password(self):
 		return self.__password
 
 	def user_str(self):
@@ -91,9 +91,11 @@ class UserGroup:
 	def check_user(self, email, password):
 		pwdhach = hashlib.sha256(password.encode('utf-8')).hexdigest()
 		for user in self.__users:
-			if user.get_email == email and user.get__password == pwdhach:
-				return True
-		return False
+			user_mail = user.get_email()
+			user_pwd = user.get_password()
+			if user_mail == email and user_pwd == password:
+				return "correct"
+		return "not correct"
 
 # momo = User("momo", "moh", "momo@mail.fr", "123456")
 

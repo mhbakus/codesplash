@@ -58,7 +58,7 @@ def connections():
 	email = input("Please enter your email address : ")
 	password = getpass.getpass('Password: ')
 
-	if userlist.check_user(email, password):
+	if userlist.check_user(email, password) == "correct":
 		print("great you're connected")
 	else:
 		print("email or password incorect")
