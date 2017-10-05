@@ -4,7 +4,7 @@ from workspace import *
 import getpass
 
 mail_client = Email('smtp.gmail.com', 587)
-mail_client.connect('elkana@meltwater.org', 'elykips+254')
+mail_client.connect('', '')
 
 userlist = UserGroup()
 userlist.load_users('user.csv')
