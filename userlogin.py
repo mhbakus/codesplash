@@ -1,5 +1,5 @@
 list_workspace = ["mestworkspace", "codesplashworkspace","charletteworkspace"]
-user_details = [{"email":"arinze.ugwu@gmail.com", "password":"python3"}, {"email":"mavungaheather@gmail.com","password":"mangoes"}]
+user_details = [{"email":"test@test.com", "password":"python3"}, {"email":"test@test.com","password":"mangoes"}]
 User_Workspace = input ("Enter name of the workspace:  ")
 email = ""
 password = ""
